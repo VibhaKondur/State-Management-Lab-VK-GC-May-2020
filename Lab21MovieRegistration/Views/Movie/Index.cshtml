@@ -8,22 +8,23 @@
         <th>Runtime</th>
         <th>Release Year</th>
         <th>Rental Cost</th>
-        @{ 
+        @*@{ 
             var cart = Context.Session.GetString("shoppingCart");
-        }
+        }*@
         <th><a class="btn" href=".../Movie"</th>
     </tr>
 
     @foreach (Movie movie in Model)
     {
-        <tr>
-            <td>@movie.ID</td>
-            <td>@movie.Title</td>
-            <td>@movie.Genre</td>
-            <td>@movie.Runtime</td>
-            <td>@movie.ReleaseYear</td>
-            <td>@movie.RentalCost</td>
-            <td><a class="btn btn-success" href ="../Movie/AddToCart?title=@movie.Title&genre=@movie.Genre&runtime=@movie.Runtime&releaseYear=@movie.ReleaseYear&rentalCost=@movie.RentalCost ">Rent</a></td>
-        </tr>
+<tr>
+    <td>@movie.ID</td>
+    <td>@movie.Title</td>
+    <td>@movie.Genre</td>
+    <td>@movie.Runtime</td>
+    <td>@movie.ReleaseYear</td>
+    <td>@movie.RentalCost</td>
+    <td><a class="btn btn-success" href="../Movie/AddToCart?title=@movie.Title&genre=@movie.Genre&runtime=@movie.Runtime&releaseYear=@movie.ReleaseYear&rentalCost=@movie.RentalCost ">Rent</a></td>
+
+</tr>
     }
 </table>

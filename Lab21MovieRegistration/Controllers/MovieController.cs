@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Lab21MovieRegistration.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Lab21MovieRegistration.Controllers
 {
@@ -76,6 +77,20 @@ namespace Lab21MovieRegistration.Controllers
         {
             var cart = HttpContext.Session.GetString("shoppingCart"); //returns string formatted as Json Data
             return JsonSerializer.Deserialize<List<Movie>>(cart);
+        }
+
+        public IActionResult Receipt()
+        {
+            shoppingCart = GetShoppingCart();
+
+            return View(shoppingCart);
+        }
+
+        public IActionResult ClearCart()
+        {
+            shoppingCart = new List<Movie>();
+            HttpContext.Session.SetString("shoppingCart", JsonSerializer.Serialize(shoppingCart));
+            return RedirectToAction("Index");
         }
     }
 }
